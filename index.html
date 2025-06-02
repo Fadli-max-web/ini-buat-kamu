@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Slide Romantis & Lucu - Versi Kamu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #ffd6e8, #e0c3fc);
+      overflow: hidden;
+    }
+    .slider-wrapper {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px 80px; /* ruang bawah buat tombol + indikator */
+    }
+    .slider-container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 1s ease;
+    }
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      flex-shrink: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      color: #fff;
+      font-size: 2rem;
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      position: relative;
+      user-select: none;
+    }
+    /* Animasi muncul saat pertama kali halaman dibuka */
+    .slide.enter-animation {
+      animation: fadeZoomIn 1.2s ease forwards;
+    }
+    @keyframes fadeZoomIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    /* Warna background tiap slide */
+    .slide:nth-child(1) { background: linear-gradient(135deg, #ff9a9e, #fad0c4); }
+    .slide:nth-child(2) { background: linear-gradient(135deg, #fbc2eb, #a6c1ee); }
+    .slide:nth-child(3) { background: linear-gradient(135deg, #ffecd2, #fcb69f); }
+    .slide:nth-child(4) { background: linear-gradient(135deg, #d4fc79, #96e6a1); }
+    .slide:nth-child(5) { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); }
+    .slide:nth-child(6) { background: linear-gradient(135deg, #f6d365, #fda085); }
+    .slide:nth-child(7) { background: linear-gradient(135deg, #f093fb, #f5576c); }
+    .slide:nth-child(8) { background: linear-gradient(135deg, #5ee7df, #b490ca); }
+    .slide:nth-child(9) { background: linear-gradient(135deg, #c3cfe2, #c3cfe2); }
+    .slide:nth-child(10) { background: linear-gradient(135deg, #667eea, #764ba2); }
+    .slide:nth-child(11) { background: linear-gradient(135deg, #89f7fe, #66a6ff); }
+
+    .slide::before {
+      content: "💕";
+      font-size: 5rem;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+    .slide::after {
+      content: "🥰";
+      font-size: 5rem;
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .nav-buttons {
+      position: fixed;
+      bottom: 60px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      z-index: 10;
+    }
+    .nav-buttons button {
+      background: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      color: #ff69b4;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: 0.3s;
+      user-select: none;
+    }
+    .nav-buttons button:hover {
+      background: #ffe0f0;
+      transform: scale(1.05);
+    }
+    #slide-indicator {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      user-select: none;
+      letter-spacing: 0.05em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+    @media (max-width: 768px) {
+      .slide {
+        font-size: 1.3rem;
+        padding: 20px;
+      }
+      .nav-buttons button {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slider-wrapper">
+    <div class="slider-container" id="slider">
+      <div class="slide active enter-animation">
+        aa yakin, walau jarak memisahin kita,<br>selama kita bisa jujur dan terbuka,<br>semuanya bakal terasa lebih ringan dan berarti.
+      </div>
+      <div class="slide">
+        kadang cuma pesan singkat dari kamu di pagi hari itu<br>udah bikin aa semangat ngejalanin hari, walau jauh sekalipun.
+      </div>
+      <div class="slide">
+        aa nggak minta yang muluk-muluk,<br>cukup kamu jadi teman ngobrol yang selalu ngerti aa,<br>walau cuma lewat layar hape.
+      </div>
+      <div class="slide">
+        aa tahu kamu suka sedih dan kadang gak mau bilang kalau lagi sakit atau ada masalah...<br>tapi kamu harus ingat,<br>aa di sini buat kamu,<br>selalu siap dengerin dan bantu kamu,<br>apapun yang kamu rasain.
+      </div>
+      <div class="slide">
+        jangan dipendem sendiri ya,<br>cerita apa pun, kapan pun kamu butuh, bilang ke aa.<br>aa gak akan marah atau gimana,<br>aa cuma pengen kamu gak ngerasa sendirian.
+      </div>
+      <div class="slide">
+        aa pengen suatu hari nanti kita bisa bangun pagi bareng,<br>gak cuma lewat video call, tapi beneran di sebelah aa.
+      </div>
+      <div class="slide">
+        semua kekurangan kita yang cuma bisa komunikasi jarak jauh<br>justru bikin aa makin sayang,<br>karena itu bukti kita berjuang bareng.
+      </div>
+      <div class="slide">
+        aa nggak butuh kata-kata manis setiap saat,<br>yang aa mau cuma kamu ada buat aa,<br>walau cuma lewat suara dan layar.
+      </div>
+      <div class="slide">
+        kalau kamu capek nunggu atau lagi nggak enak badan, bilang ya ke aa.<br>aa pengen jadi tempat kamu bersandar,<br>walau cuma lewat chat,<br>aa bakal selalu ada buat kamu.
+      </div>
+      <div class="slide">
+        aa percaya, cinta sederhana kita bisa kuat dan tahan lama,<br>karena dibangun dari kejujuran, kesabaran, dan rasa saling percaya meski berjauhan.
+      </div>
+      <div class="slide">
+        jadi, yuk kita jalani ini dengan sabar dan hati yang penuh harapan,<br>yakin kalau suatu saat nanti kita bisa dekat dan bahagia bareng.
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button onclick="prevSlide()">⬅ Sebelumnya</button>
+      <button onclick="nextSlide()">Selanjutnya ➡</button>
+    </div>
+
+    <div id="slide-indicator">Slide 1 dari 11</div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const slider = document.getElementById('slider');
+    const slideIndicator = document.getElementById('slide-indicator');
+    let currentIndex = 0;
+
+    function updateSlide() {
+      slider.style.transform = `translateX(-${currentIndex * 100}vw)`;
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentIndex);
+        if(index === currentIndex && index === 0){
+          slide.classList.add('enter-animation');
+        } else {
+          slide.classList.remove('enter-animation');
+        }
+      });
+      slideIndicator.textContent = `Slide ${currentIndex + 1} dari ${slides.length}`;
+    }
+
+    function nextSlide() {
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlide();
+      }
+    }
+
+    window.onload = () => {
+      updateSlide();
+    }
+  </script>
+</body>
+</html>
